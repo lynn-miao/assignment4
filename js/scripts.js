@@ -11,10 +11,6 @@ map.addControl(new mapboxgl.NavigationControl());
 // wait!
 map.on('load', () => {
 
-    console.log(
-        map.getStyle().layers
-    )
-
     // add the subway data
 
     map.addSource('subway', {
@@ -78,14 +74,77 @@ map.on('load', () => {
                 '#B933AD',
                 '#ccc'
             ],
-            'line-width': 2,
+            'line-width': 4,
+            'line-opacity': 0.5
+        }
+    });
+
+    // click on a line and it highlights
+
+    // this is a variable to store the id of the feature that is currently being hovered.
+    let hoveredPolygonId = null
+
+    // whenever the mouse moves on the 'borough-boundaries-fill' layer, we check the id of the feature it is on top of, and set featureState for that feature.  The featureState we set is hover:true or hover:false
+    map.on('mousemove', 'subway-line', (e) => {
+        // don't do anything if there are no features from this layer under the mouse pointer
+        if (e.features.length > 0) {
+            // if hoveredPolygonId already has an id in it, set the featureState for that id to hover: false
+            if (hoveredPolygonId !== null) {
+                map.setFeatureState(
+                    { source: 'subway', id: hoveredPolygonId },
+                    { hover: false }
+                );
+            }
+
+            // set hoveredPolygonId to the id of the feature currently being hovered
+            hoveredPolygonId = e.features[0].properties.id;
+
+            // set the featureState of this feature to hover:true
+            map.setFeatureState(
+                { source: 'subway', id: hoveredPolygonId },
+                { hover: true }
+            );
+
+            // make the cursor a pointer to let the user know it is clickable
+            map.getCanvas().style.cursor = 'pointer'
+
+            // resets the feature state to the default (nothing is hovered) when the mouse leaves the 'borough-boundaries-fill' layer
+            map.on('mouseleave', 'subway-line', () => {
+                // set the featureState of the previous hovered feature to hover:false
+                if (hoveredPolygonId !== null) {
+                    map.setFeatureState(
+                        { source: 'subway', id: hoveredPolygonId },
+                        { hover: false }
+                    );
+                }
+
+                // clear hoveredPolygonId
+                hoveredPolygonId = null;
+
+                // set the cursor back to default
+                map.getCanvas().style.cursor = ''
+            });
+
         }
     });
 
 
-    // click on a line and it highlights
+    // if the user clicks on a line
+    map.on('click', 'subway-line', (e) => {
+        // get the boro_name from the first item in the array e.features
+        var line_name = e.features[0].properties.rt_symbol
 
-    // click on a line and information appears about the line
+        // insert the  name into the sidebar using jQuery
+        $('#line_name').text(`You clicked on the ${line_name} and other interconnected lines!`)
+
+        // highlight the line
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], line_name], // If line matches the clicked line, set opacity to 1
+            1,
+            0.3 // Otherwise, set opacity to 0.3
+        ])
+    });
 
     // use the map to choose a line to highlight
 })
