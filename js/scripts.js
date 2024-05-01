@@ -79,12 +79,14 @@ map.on('load', () => {
         }
     });
 
-    // click on a line and it highlights
+    // click on a line and it highlights the line
 
     // this is a variable to store the id of the feature that is currently being hovered.
     let hoveredPolygonId = null
 
-    // whenever the mouse moves on the 'borough-boundaries-fill' layer, we check the id of the feature it is on top of, and set featureState for that feature.  The featureState we set is hover:true or hover:false
+    // whenever the mouse moves on the 'borough-boundaries-fill' layer, we check the id of the feature it is on top of
+    //, and set featureState for that feature.  The featureState we set is hover:true or hover:false
+    
     map.on('mousemove', 'subway-line', (e) => {
         // don't do anything if there are no features from this layer under the mouse pointer
         if (e.features.length > 0) {
@@ -142,9 +144,121 @@ map.on('load', () => {
             'case',
             ['==', ['get', 'rt_symbol'], line_name], // If line matches the clicked line, set opacity to 1
             1,
-            0.3 // Otherwise, set opacity to 0.3
+            0.25 // Otherwise, set opacity to 0.3
         ])
     });
 
-    // use the map to choose a line to highlight
+
+    // listen for a click on a specific button 
+    $('#line123-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], '1'], // Check if the line is 1
+            1, // If it's line 1, set opacity to 1
+            ['==', ['get', 'rt_symbol'], '2'], // Check if the line is 2
+            1, // If it's line 2, set opacity to 1
+            ['==', ['get', 'rt_symbol'], '3'], // Check if the line is 3
+            1, // If it's line 3, set opacity to 1
+            0.25 // Otherwise, set opacity to 0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#line456-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], '4'], // Check if the line is 4
+            1, // If it's line 1, set opacity to 1
+            ['==', ['get', 'rt_symbol'], '5'], // Check if the line is 5
+            1, // If it's line 2, set opacity to 1
+            ['==', ['get', 'rt_symbol'], '6'], // Check if the line is 6
+            1, // If it's line 3, set opacity to 1
+            0.25 // Otherwise, set opacity to 0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineBDFM-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'B'], // Check if the line is 1
+            1, // If it's line 1, set opacity to 1
+            ['==', ['get', 'rt_symbol'], 'D'], // Check if the line is 2
+            1, // If it's line 2, set opacity to 1
+            ['==', ['get', 'rt_symbol'], 'F'], // Check if the line is 3
+            1, // If it's line 3, set opacity to 1
+            0.25 // Otherwise, set opacity to 0.3
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineNQRW-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'N'], // Check if the line is 1
+            1, // If it's line 1, set opacity to 1
+            ['==', ['get', 'rt_symbol'], 'Q'], // Check if the line is 2
+            1, // If it's line 2, set opacity to 1
+            ['==', ['get', 'rt_symbol'], 'R'], // Check if the line is 3
+            1, // If it's line 3, set opacity to 1
+            0.25 // Otherwise, set opacity to 0.3
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineG-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'G'],
+            1,
+            0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#line7-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], '7'],
+            1,
+            0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineL-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'L'],
+            1,
+            0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineJZ-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'J'],
+            1,
+            ['==', ['get', 'rt_symbol'], 'Z'],
+            1,
+            0.25
+        ]);
+    });
+
+    // listen for a click on a specific button 
+    $('#lineACE-button').on('click', function () {
+        map.setPaintProperty('subway-line', 'line-opacity', [
+            'case',
+            ['==', ['get', 'rt_symbol'], 'A'],
+            1,
+            ['==', ['get', 'rt_symbol'], 'C'],
+            1,
+            ['==', ['get', 'rt_symbol'], 'E'],
+            1,
+            0.25
+        ]);
+    });
+
 })

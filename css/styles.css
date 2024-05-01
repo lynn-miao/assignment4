@@ -1,78 +1,79 @@
 html,
-        head,
-        body,
-        #main-container {
-            height: 100%;
-            width: 100%;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
+head,
+body,
+#main-container {
+    height: 100%;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-        }
+body {
+    margin: 0;
+    padding: 0;
+}
 
-        #main-container {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
+#main-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
-        nav {
-            padding: 1rem;
-            border-bottom: 1px solid #000;
-            display: flex;
-        }
+nav {
+    padding: 1rem;
+    border-bottom: 1px solid #000;
+    display: flex;
+}
 
-        .nav-links {
-            flex-grow: 1;
-            justify-content: end;
-            display: flex;
-        }
+.nav-links {
+    flex-grow: 1;
+    justify-content: end;
+    display: flex;
+}
 
-        .nav-link {
-            display: inline-block;
-            font-size: .9rem;
-        }
+.nav-link {
+    display: inline-block;
+    font-size: .9rem;
+}
 
-        #content-container {
-            flex-grow: 1;
-            display: flex;
-            min-height: 0;
-        }
+#content-container {
+    flex-grow: 1;
+    display: flex;
+    min-height: 0;
+}
 
-        #sidebar {
-            width: 348px;
-            padding: 1rem;
-            font-size: 0.9rem;
-            overflow-y: scroll;
-            box-sizing: border-box;
-        }
+#sidebar {
+    width: 348px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
 
-        #map {
-            height: 100%;
-            flex-grow: 1;
-        }
+#map {
+    height: 100%;
+    flex-grow: 1;
+}
 
-        .title {
-            font-weight: 600;
-        }
+.title {
+    font-weight: 600;
+}
 
-        @media only screen and (max-width: 800px) {
-            #content-container {
-                flex-direction: column-reverse;
-            }
+@media only screen and (max-width: 800px) {
+    #content-container {
+        flex-direction: column-reverse;
+    }
 
-            #map {
-                height: 60%;
-                flex-shrink: 0;
-            }
+    #map {
+        height: 60%;
+        flex-shrink: 0;
+    }
 
-            #sidebar {
-                width: 100%;
-            }
-        }
-        /* button style */
+    #sidebar {
+        width: 100%;
+    }
+}
+
+/* button style */
 /* Beautiful button from https://getcssscan.com/css-buttons-examples */
 .button-18 {
     align-items: center;
@@ -101,32 +102,77 @@ html,
     user-select: none;
     -webkit-user-select: none;
     vertical-align: middle;
-    margin-bottom:8px;
-  }
-  
-  .button-18:hover { 
+    margin-bottom: 8px;
+}
+
+.button-18:hover {
     background-color: #16437E;
     color: #ffffff;
-  }
-  
-  .button-18:active {
-    background: #09223b;
-    color: rgb(255, 255, 255, .7);
-  }
-  
-  .button-18:disabled { 
+}
+
+
+.button-18:disabled {
     cursor: not-allowed;
     background: rgba(0, 0, 0, .08);
     color: rgba(0, 0, 0, .3);
-  }
+}
 
-  /* styles for text areas in the sidebar */
-#line_name, .description-text {
+#line123-button {
+    background-color: #EE352E;
+    color: white;
+    /* This sets the text color to white to improve visibility */
+}
+
+#lineACE-button {
+    background-color: #0039A6;
+    color: white;
+}
+
+#lineBDFM-button {
+    background-color: #FF6319;
+    color: white;
+}
+
+#lineG-button {
+    background-color: #6CBE45;
+    color: white;
+}
+
+#lineJZ-button {
+    background-color: #996633;
+    color: white;
+}
+
+#lineL-button {
+    background-color: #A7A9AC;
+    color: white;
+}
+
+#lineNQRW-button {
+    background-color: #FCCC0A;
+    color: white;
+}
+
+#line456-button {
+    background-color: #00933C;
+    color: white;
+}
+
+#line7-button {
+    background-color: #B933AD;
+    color: white;
+}
+
+
+/* styles for text areas in the sidebar */
+#line_name,
+.description-text {
     font-size: 14px;
     margin-bottom: 15px;
-  }
+}
 
-  .subway-line.active {
+.subway-line.active {
     font-weight: bold;
-    opacity: 1; /* Ensure opacity is set to 1 for the active line */
+    opacity: 1;
+    /* Ensure opacity is set to 1 for the active line */
 }
